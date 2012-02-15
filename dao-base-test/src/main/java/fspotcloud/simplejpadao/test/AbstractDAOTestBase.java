@@ -45,6 +45,6 @@ public abstract class AbstractDAOTestBase<T extends HasId> {
     public void countTwo() {
         createAndSaveNewEntity();
         createAndSaveNewEntity();
-        Assert.assertEquals(2, getDao().count(1));
+        Assert.assertEquals(2, getDao().count(2));
     }
 }

@@ -32,6 +32,17 @@
             <artifactId>dao-base-test</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guiceberry</groupId>
+            <artifactId>guiceberry</artifactId>
+            <version>3.0.4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>

@@ -9,6 +9,23 @@
     <name>Simple JPA DAO</name>
     <dependencies>
     </dependencies>
+    <build>  
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+        </extensions>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>fspotcloud-maven</id>
+            <name>fspotcloud-maven</name>
+            <url>dav:https://fspotcloud-maven.googlecode.com/svn/maven/repository</url>
+        </repository>
+    </distributionManagement>
+    
     <modules>
         <module>dao-api</module>
         <module>dao-base-test</module>
