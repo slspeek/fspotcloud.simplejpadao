@@ -5,12 +5,12 @@
     <parent>
         <groupId>fspotcloud.simple-jpa-dao</groupId>
         <artifactId>simple-jpa-dao</artifactId>
-        <version>0.1-sjd</version>
+        <version>0.11-sjd</version>
     </parent>
     <groupId>fspotcloud.simple-jpa-dao</groupId>
     <artifactId>dao-api</artifactId>
     <packaging>jar</packaging>
-    <name>Helper interfaces for Simple JPA DAO</name>
+    <name>API for Simple JPA DAO</name>
     <dependencies>
     </dependencies>
 </project>

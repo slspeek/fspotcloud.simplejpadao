@@ -33,7 +33,7 @@ public class SimpleDAONamedIdImpl<T extends HasSetId, U extends T> extends DAOBa
         T entity;
         try {
             entity = entityType.newInstance();
-            entity.setId(key);
+            entity.setId((String)key);
             return entity;
         } catch (InstantiationException ex) {
             Logger.getLogger(SimpleDAONamedIdImpl.class.getName()).log(Level.SEVERE, null, ex);

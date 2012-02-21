@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fspotcloud.simple-jpa-dao</groupId>
     <artifactId>simple-jpa-dao</artifactId>
-    <version>0.1-sjd</version>
+    <version>0.11-sjd</version>
     <packaging>pom</packaging>
     <name>Simple JPA DAO</name>
     <dependencies>
@@ -25,7 +25,6 @@
             <url>dav:https://fspotcloud-maven.googlecode.com/svn/maven/repository</url>
         </repository>
     </distributionManagement>
-    
     <modules>
         <module>dao-api</module>
         <module>dao-base-test</module>

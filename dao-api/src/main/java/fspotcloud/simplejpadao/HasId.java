@@ -9,5 +9,5 @@ package fspotcloud.simplejpadao;
  * @author steven
  */
 public interface HasId {
-    Object getId();
+    Long getId();
 }

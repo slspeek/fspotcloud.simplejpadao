@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author steven
  */
-public interface AbstractDAO<T extends HasId> {
+public interface AbstractDAO<T> {
 
     List<T> findAll(int max);
 

@@ -4,8 +4,12 @@
  */
 package fspotcloud.simplejpadao;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -14,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author steven
  */
-public class DAOBase<T extends HasId, U extends T> implements AbstractDAO<T> {
+public class DAOBase<T, U extends T> implements AbstractDAO<T> {
 
     protected final Class<U> entityType;
     protected final Provider<EntityManager> entityManagerProvider;
@@ -81,7 +85,7 @@ public class DAOBase<T extends HasId, U extends T> implements AbstractDAO<T> {
         EntityManager em = entityManagerProvider.get();
         try {
             em.getTransaction().begin();
-            em.persist(entity);
+            em.merge(entity);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -97,8 +101,23 @@ public class DAOBase<T extends HasId, U extends T> implements AbstractDAO<T> {
 
     @Override
     public void delete(T entity) {
-        Object id = entity.getId();
-        deleteByKey(id);
+        try {
+           Method m = entity.getClass().getMethod("getId", new Class[] {});
+           Object ret = m.invoke(entity, new Object[] {});
+           
+           Object id = ret;
+           deleteByKey(id);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     protected void deleteByKey(Object key) {

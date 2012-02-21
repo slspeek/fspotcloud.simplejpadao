@@ -5,7 +5,7 @@
     <parent>
         <groupId>fspotcloud.simple-jpa-dao</groupId>
         <artifactId>simple-jpa-dao</artifactId>
-        <version>0.1-sjd</version>
+        <version>0.11-sjd</version>
         </parent>
     <groupId>fspotcloud.simple-jpa-dao</groupId>
     <artifactId>dao-namedid-test</artifactId>
@@ -26,6 +26,11 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dao-base-test</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <repositories>

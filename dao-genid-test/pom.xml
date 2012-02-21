@@ -5,7 +5,7 @@
     <parent>
         <groupId>fspotcloud.simple-jpa-dao</groupId>
         <artifactId>simple-jpa-dao</artifactId>
-        <version>0.1-sjd</version>
+        <version>0.11-sjd</version>
         </parent>
     <groupId>fspotcloud.simple-jpa-dao</groupId>
     <artifactId>dao-genid-test</artifactId>
