@@ -5,7 +5,6 @@
 package fspotcloud.simplejpadao.test;
 
 import fspotcloud.simplejpadao.AbstractDAO;
-import fspotcloud.simplejpadao.HasId;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +13,10 @@ import org.junit.Test;
  *
  * @author steven
  */
-public abstract class AbstractDAOTestBase<T> {
+public abstract class AbstractDAOTestBase<T,K> {
     
     
-    public abstract AbstractDAO<T> getDao();
+    public abstract AbstractDAO<T,K> getDao();
     
     public abstract T newUniqueInstance();
         

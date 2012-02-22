@@ -6,7 +6,6 @@ package fspotcloud.simplejpadao.test.genid;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import fspotcloud.simplejpadao.AbstractDAO;
-import fspotcloud.simplejpadao.HasId;
 import fspotcloud.simplejpadao.SimpleDAOGenId;
 import fspotcloud.simplejpadao.test.AbstractDAOTestBase;
 import fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv;
@@ -17,7 +16,7 @@ import org.junit.Rule;
  *
  * @author steven
  */
-public class GenIdDAOTest<T extends HasId> extends AbstractDAOTestBase<T> {
+public class GenIdDAOTest<T,K> extends AbstractDAOTestBase<T,K> {
 
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
@@ -26,7 +25,7 @@ public class GenIdDAOTest<T extends HasId> extends AbstractDAOTestBase<T> {
     @Inject SimpleDAOGenId dao;
 
     @Override
-    public AbstractDAO<T> getDao() {
+    public AbstractDAO<T,K> getDao() {
         return dao;
     }
 

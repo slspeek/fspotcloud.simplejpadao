@@ -8,7 +8,7 @@ package fspotcloud.simplejpadao;
  *
  * @author steven
  */
-public interface HasSetId {
-     void setId(String id);
-     String getId();
+public interface HasSetKey<K> extends HasKey<K> {
+
+    void setId(K id);
 }

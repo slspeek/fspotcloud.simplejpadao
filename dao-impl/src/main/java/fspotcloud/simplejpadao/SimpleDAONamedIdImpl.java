@@ -13,14 +13,15 @@ import javax.persistence.EntityManager;
  *
  * @author steven
  */
-public class SimpleDAONamedIdImpl<T extends HasSetId, U extends T> extends DAOBase<T, U> implements SimpleDAONamedId<T> {
+public class SimpleDAONamedIdImpl<T extends HasSetKey<K>, U extends T, K>
+        extends DAOBase<T, U, K> implements SimpleDAONamedId<T,K> {
 
     public SimpleDAONamedIdImpl(Class<U> entityType, Provider<EntityManager> emProvider) {
         super(entityType, emProvider);
     }
 
     @Override
-    public T findOrNew(Object key) {
+    public T findOrNew(K key) {
         T entity = find(key);
         if (entity == null) {
             entity = newEntity(key);
@@ -29,11 +30,11 @@ public class SimpleDAONamedIdImpl<T extends HasSetId, U extends T> extends DAOBa
     }
 
     @Override
-    public T newEntity(Object key) {
+    public T newEntity(K key) {
         T entity;
         try {
             entity = entityType.newInstance();
-            entity.setId((String)key);
+            entity.setId(key);
             return entity;
         } catch (InstantiationException ex) {
             Logger.getLogger(SimpleDAONamedIdImpl.class.getName()).log(Level.SEVERE, null, ex);

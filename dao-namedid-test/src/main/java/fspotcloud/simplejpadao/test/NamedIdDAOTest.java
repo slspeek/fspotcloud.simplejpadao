@@ -14,7 +14,7 @@ import org.junit.Rule;
  *
  * @author steven
  */
-public class NamedIdDAOTest<T extends HasSetId> extends AbstractDAOTestBase<T> {
+public class NamedIdDAOTest<T extends HasSetKey<K>,K> extends AbstractDAOTestBase<T,K> {
 
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
@@ -25,7 +25,7 @@ public class NamedIdDAOTest<T extends HasSetId> extends AbstractDAOTestBase<T> {
     int counter;
 
     @Override
-    public AbstractDAO<T> getDao() {
+    public AbstractDAO<T,K> getDao() {
         return dao;
     }
 

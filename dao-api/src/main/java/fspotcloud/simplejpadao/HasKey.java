@@ -8,6 +8,6 @@ package fspotcloud.simplejpadao;
  *
  * @author steven
  */
-public interface HasId {
-    Long getId();
+public interface HasKey<K> {
+    K getId();
 }

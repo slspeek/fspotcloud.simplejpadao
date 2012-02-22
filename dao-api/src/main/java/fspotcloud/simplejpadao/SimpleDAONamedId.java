@@ -4,17 +4,14 @@
  */
 package fspotcloud.simplejpadao;
 
-import fspotcloud.simplejpadao.HasSetId;
-import java.util.List;
-
 /**
  *
  * @author steven
  */
-public interface SimpleDAONamedId<T extends HasSetId> extends AbstractDAO<T> {
+public interface SimpleDAONamedId<T extends HasSetKey<K>, K> extends AbstractDAO<T,K> {
 
-    T findOrNew(Object key);
+    T findOrNew(K key);
     
-    T newEntity(Object key);
+    T newEntity(K key);
     
 }

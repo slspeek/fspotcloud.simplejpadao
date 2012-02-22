@@ -14,7 +14,8 @@ import javax.persistence.EntityManager;
  *
  * @author steven
  */
-public class SimpleDAOGenIdImpl<T extends HasId, U extends T> extends DAOBase<T, U> implements SimpleDAOGenId<T> {
+public class SimpleDAOGenIdImpl<T extends HasKey<K>, U extends T, K>
+        extends DAOBase<T, U, K> implements SimpleDAOGenId<T, K> {
 
     public SimpleDAOGenIdImpl(Class<U> entityType, Provider<EntityManager> emProvider) {
         super(entityType, emProvider);
@@ -32,7 +33,7 @@ public class SimpleDAOGenIdImpl<T extends HasId, U extends T> extends DAOBase<T,
         return null;
     }
 
-     @Override
+    @Override
     public T newPeristentEntity() {
         T entity = newEntity();
         save(entity);

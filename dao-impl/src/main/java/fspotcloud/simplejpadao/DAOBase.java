@@ -18,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author steven
  */
-public class DAOBase<T, U extends T> implements AbstractDAO<T> {
+public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO<T, K> {
 
     protected final Class<U> entityType;
     protected final Provider<EntityManager> entityManagerProvider;
@@ -29,7 +29,7 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
     }
 
     @Override
-    public T find(Object key) {
+    public T find(K key) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
         T entity = null;
@@ -62,7 +62,7 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
     }
 
     @Override
-    public List<Object> findAllKeys(int max) {
+    public List<K> findAllKeys(int max) {
         EntityManager em = entityManagerProvider.get();
         //em.getTransaction().begin();
         try {
@@ -70,8 +70,8 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
                     + entityType.getName() + " AS c");
             query.setMaxResults(max);
             @SuppressWarnings("unchecked")
-            List<Object> rs = (List<Object>) query.getResultList();
-            List<Object> result = new ArrayList<Object>();
+            List<K> rs = (List<K>) query.getResultList();
+            List<K> result = new ArrayList<K>();
             result.addAll(rs);
             //em.getTransaction().commit();
             return result;
@@ -101,28 +101,13 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
 
     @Override
     public void delete(T entity) {
-        try {
-           Method m = entity.getClass().getMethod("getId", new Class[] {});
-           Object ret = m.invoke(entity, new Object[] {});
-           
-           Object id = ret;
-           deleteByKey(id);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
-            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(DAOBase.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        K id = entity.getId();
+        deleteByKey(id);
     }
-    
-    protected void deleteByKey(Object key) {
+
+    public void deleteByKey(K key) {
         EntityManager em = entityManagerProvider.get();
-            em.getTransaction().begin();
+        em.getTransaction().begin();
         T entityRetrieved = em.find(entityType, key);
         try {
             System.out.println("Deleting " + key);
@@ -131,7 +116,7 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
         } finally {
             em.close();
         }
-        
+
     }
 
     @Override
@@ -144,20 +129,20 @@ public class DAOBase<T, U extends T> implements AbstractDAO<T> {
 
     @Override
     public boolean isEmpty() {
-        List<Object> keys = findAllKeys(1);
+        List<K> keys = findAllKeys(1);
         return keys.isEmpty();
     }
-    
-     @Override
+
+    @Override
     public int count(int max) {
-        List<Object> keys = findAllKeys(max);
+        List<K> keys = findAllKeys(max);
         return keys.size();
     }
 
     @Override
     public boolean deleteBulk(int max) {
-        List<Object> entityList = findAllKeys(max);
-        for (Object key: entityList) {
+        List<K> entityList = findAllKeys(max);
+        for (K key : entityList) {
             deleteByKey(key);
         }
         return isEmpty();

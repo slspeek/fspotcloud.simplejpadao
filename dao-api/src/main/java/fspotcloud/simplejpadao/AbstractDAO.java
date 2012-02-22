@@ -10,19 +10,21 @@ import java.util.List;
  *
  * @author steven
  */
-public interface AbstractDAO<T> {
+public interface AbstractDAO<T,K> {
 
     List<T> findAll(int max);
 
-    List<Object> findAllKeys(int max);
+    List<K> findAllKeys(int max);
 
     void save(T entity);
 
     void saveAll(List<T> entityList);
 
-    T find(Object key);
+    T find(K key);
 
     void delete(T entity);
+    
+    void deleteByKey(K key);
 
     void deleteAll(List<T> entityList);
 
