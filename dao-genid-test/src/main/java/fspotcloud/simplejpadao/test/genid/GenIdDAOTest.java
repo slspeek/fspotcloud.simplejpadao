@@ -16,16 +16,15 @@ import org.junit.Rule;
  *
  * @author steven
  */
-public class GenIdDAOTest<T,K> extends AbstractDAOTestBase<T,K> {
+public class GenIdDAOTest<T, K> extends AbstractDAOTestBase<T, K> {
 
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
-   
-    
-    @Inject SimpleDAOGenId dao;
+    @Inject
+    SimpleDAOGenId dao;
 
     @Override
-    public AbstractDAO<T,K> getDao() {
+    public AbstractDAO<T, K> getDao() {
         return dao;
     }
 
