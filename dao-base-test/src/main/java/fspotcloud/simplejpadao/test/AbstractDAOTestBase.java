@@ -5,7 +5,8 @@
 package fspotcloud.simplejpadao.test;
 
 import fspotcloud.simplejpadao.AbstractDAO;
-import junit.framework.Assert;
+import fspotcloud.simplejpadao.HasKey;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import org.junit.Test;
  *
  * @author steven
  */
-public abstract class AbstractDAOTestBase<T,K> {
+public abstract class AbstractDAOTestBase<T extends HasKey<K>,K> {
     
     
     public abstract AbstractDAO<T,K> getDao();
@@ -25,61 +26,77 @@ public abstract class AbstractDAOTestBase<T,K> {
         getDao().deleteBulk(1000);
     }
     
-    protected void createAndSaveNewEntity() {
+    protected T createAndSaveNewEntity() {
         T  entity = newUniqueInstance();
         getDao().save(entity);
+        return entity;
     }
     @Test
     public void countZero() {
-        Assert.assertEquals(0, getDao().count(1));
+        assertEquals(0, getDao().count(1));
     } 
     
     @Test
     public void countOne() {
         createAndSaveNewEntity();
-        Assert.assertEquals(1, getDao().count(1));
+        assertEquals(1, getDao().count(1));
     }
     
     @Test
     public void countTwo() {
         createAndSaveNewEntity();
         createAndSaveNewEntity();
-        Assert.assertEquals(2, getDao().count(2));
+        assertEquals(2, getDao().count(2));
     }
     
     @Test
     public void emptyList() {
-        Assert.assertTrue(getDao().findAll(1).isEmpty());
+        assertTrue(getDao().findAll(1).isEmpty());
     }
     
     @Test
     public void oneItemList() {
         createAndSaveNewEntity();
-        Assert.assertEquals(1, getDao().findAll(1).size());
+        assertEquals(1, getDao().findAll(1).size());
     }
     
     @Test
     public void twoItemList() {
         createAndSaveNewEntity();
         createAndSaveNewEntity();
-        Assert.assertEquals(2, getDao().findAll(2).size());
+        assertEquals(2, getDao().findAll(2).size());
     }
     
     @Test
     public void emptyKeyList() {
-        Assert.assertTrue(getDao().findAllKeys(1).isEmpty());
+        assertTrue(getDao().findAllKeys(1).isEmpty());
     }
     
     @Test
     public void oneKeyList() {
         createAndSaveNewEntity();
-        Assert.assertEquals(1, getDao().findAllKeys(1).size());
+        assertEquals(1, getDao().findAllKeys(1).size());
     }
     
     @Test
     public void twoKeyList() {
         createAndSaveNewEntity();
         createAndSaveNewEntity();
-        Assert.assertEquals(2, getDao().findAllKeys(2).size());
+        assertEquals(2, getDao().findAllKeys(2).size());
+    }
+    
+    @Test
+    public void deleteByKeyOne() {
+        T ent = createAndSaveNewEntity();
+        K key = ent.getId();
+        getDao().deleteByKey(key);
+        assertEquals(0, getDao().count(1));
+    }
+    
+    @Test
+    public void deleteOne() {
+        T ent = createAndSaveNewEntity();
+        getDao().delete(ent);
+        assertEquals(0, getDao().count(1));
     }
 }

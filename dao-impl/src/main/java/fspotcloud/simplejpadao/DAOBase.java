@@ -16,7 +16,7 @@ import javax.persistence.Query;
  * @author steven
  */
 public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO<T, K> {
-    
+
     protected final Class<U> entityType;
     protected final Provider<EntityManager> entityManagerProvider;
     private static final Logger log = Logger.getLogger(DAOBase.class.getName());
@@ -25,7 +25,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         this.entityType = entityType;
         this.entityManagerProvider = emProvider;
     }
-    
+
     @Override
     public T find(K key) {
         EntityManager em = entityManagerProvider.get();
@@ -39,7 +39,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         }
         return entity;
     }
-    
+
     @Override
     public List<T> findAll(int max) {
         EntityManager em = entityManagerProvider.get();
@@ -58,7 +58,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
             em.close();
         }
     }
-    
+
     @Override
     public List<K> findAllKeys(int max) {
         EntityManager em = entityManagerProvider.get();
@@ -77,59 +77,70 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
             em.close();
         }
     }
-    
+
     @Override
     public void save(T entity) {
         EntityManager em = entityManagerProvider.get();
         try {
             em.getTransaction().begin();
-            em.merge(entity);
+            K key = entity.getId();
+            if (key == null) {
+                em.persist(entity);
+            } else {
+                T retrieved = em.find(entityType, key);
+                if (retrieved == null) {
+                    em.persist(entity);
+                } else {
+                    em.merge(entity);
+                }
+            }
             em.getTransaction().commit();
         } finally {
             em.close();
         }
     }
-    
+
     @Override
     public void saveAll(List<T> entityList) {
         for (T entity : entityList) {
             save(entity);
         }
     }
-    
+
     @Override
     public void delete(T entity) {
         deleteByKey(entity.getId());
     }
-    
+
     public void deleteByKey(K key) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
+        log.info("about to find for delete: " + key);
         T entityRetrieved = em.find(entityType, key);
         em.remove(entityRetrieved);
         em.getTransaction().commit();
         em.close();
     }
-    
+
     @Override
     public void deleteAll(List<T> entityList) {
         for (T entity : entityList) {
             delete(entity);
         }
     }
-    
+
     @Override
     public boolean isEmpty() {
         List<K> keys = findAllKeys(1);
         return keys.isEmpty();
     }
-    
+
     @Override
     public int count(int max) {
         List<K> keys = findAllKeys(max);
         return keys.size();
     }
-    
+
     @Override
     public boolean deleteBulk(int max) {
         List<K> entityList = findAllKeys(max);
