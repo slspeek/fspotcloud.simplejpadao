@@ -5,11 +5,9 @@
 package fspotcloud.simplejpadao;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -17,15 +15,11 @@ import javax.persistence.Persistence;
  */
 public class EMProvider implements Provider<EntityManager> {
 
-    private final String name;
-    private static EntityManagerFactory emfInstance;
+    private final EntityManagerFactory emfInstance;
 
     @Inject
-    public EMProvider(@Named("persistence-unit") String name) {
-        this.name = name;
-        if (emfInstance == null) {
-            this.emfInstance = Persistence.createEntityManagerFactory(name);
-        }
+    public EMProvider(EntityManagerFactory emfInstance) {
+        this.emfInstance = emfInstance;
     }
 
     @Override

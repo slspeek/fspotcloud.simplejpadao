@@ -6,6 +6,8 @@ import com.google.inject.name.Names;
 import fspotcloud.simplejpadao.EMProvider;
 import fspotcloud.simplejpadao.SimpleDAONamedId;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 public class NamedIdGuiceBerryEnv extends GuiceBerryModule {
@@ -14,7 +16,9 @@ public class NamedIdGuiceBerryEnv extends GuiceBerryModule {
     protected void configure() {
         super.configure();
         bind(NamedIdDAO.class).to(NamedIdRepository.class);
-        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("derby-command");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby-command");
+        System.out.println("EMF " + factory);
+        bind(EntityManagerFactory.class).toInstance(factory);
         bind(EntityManager.class).toProvider(EMProvider.class);
         bind(SimpleDAONamedId.class).to(NamedIdRepository.class);
     }
