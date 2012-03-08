@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>fspotcloud.simple-jpa-dao</groupId>
+        <groupId>com.googlecode.simple-jpa-dao</groupId>
         <artifactId>simple-jpa-dao</artifactId>
-        <version>0.15-sjd</version>
+        <version>0.16-sjd</version>
         </parent>
-    <groupId>fspotcloud.simple-jpa-dao</groupId>
+    <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>dao-genid-test</artifactId>
     <packaging>jar</packaging>
     <name>Test for DAO with an entity with a generated id</name>

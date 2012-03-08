@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>simple-jpa-dao</artifactId>
-        <groupId>fspotcloud.simple-jpa-dao</groupId>
-        <version>0.15-sjd</version>
+        <groupId>com.googlecode.simple-jpa-dao</groupId>
+        <version>0.16-sjd</version>
     </parent>
-    <groupId>fspotcloud.simple-jpa-dao</groupId>
+    <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>j2ee-int-test</artifactId>
     <name>j2ee-int-test</name>
     <url>http://maven.apache.org</url>
@@ -48,13 +48,13 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>fspotcloud.simple-jpa-dao</groupId>
+                                    <groupId>com.googlecode.simple-jpa-dao</groupId>
                                     <artifactId>dao-genid-test</artifactId>
                                     <type>jar</type>
                                     <outputDirectory>${project.build.directory}/additionaltests/genid</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>fspotcloud.simple-jpa-dao</groupId>
+                                    <groupId>com.googlecode.simple-jpa-dao</groupId>
                                     <artifactId>dao-namedid-test</artifactId>
                                     <type>jar</type>
                                     <outputDirectory>${project.build.directory}/additionaltests/namedid</outputDirectory>
@@ -69,7 +69,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>                                
-                        <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                        <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
@@ -82,7 +82,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/genid</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -98,7 +98,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/namedid</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.simplejpadao.j2eeinttest.NamedIdGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.NamedIdGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -194,9 +194,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-impl</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
         </dependency>
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
@@ -248,21 +248,21 @@
             <version>3.0</version>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-api</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-genid-test</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
