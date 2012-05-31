@@ -5,7 +5,7 @@
   <parent>
     <artifactId>simple-jpa-dao</artifactId>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
-    <version>0.16-sjd</version>
+    <version>0.17-sjd</version>
   </parent>
   <groupId>com.googlecode.simple-jpa-dao</groupId>
   <artifactId>gae-int-tests</artifactId>

@@ -13,6 +13,8 @@ import java.util.List;
 public interface AbstractDAO<T,K> {
 
     List<T> findAll(int max);
+    
+    List<T> findAllWhere(int max, String contraint, Object... parameters);
 
     List<K> findAllKeys(int max);
 

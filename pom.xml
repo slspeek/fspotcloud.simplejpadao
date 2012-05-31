@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>simple-jpa-dao</artifactId>
-    <version>0.16-sjd</version>
+    <version>0.17-sjd</version>
     <packaging>pom</packaging>
     <name>Simple JPA DAO</name>
     <dependencies>

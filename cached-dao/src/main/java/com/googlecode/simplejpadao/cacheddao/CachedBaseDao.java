@@ -88,4 +88,10 @@ public class CachedBaseDao<T extends HasKey<K> & Serializable, U extends T, K>
     public int count(int max) {
         return delegate.count(max);
     }
+
+    public List<T> findAllWhere(int max, String contraint, Object... parameters) {
+        List<T> result = delegate.findAllWhere(max, contraint, parameters);
+        putAll(result);
+        return result;
+    }
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>simple-jpa-dao</artifactId>
         <groupId>com.googlecode.simple-jpa-dao</groupId>
-        <version>0.16-sjd</version>
+        <version>0.17-sjd</version>
     </parent>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>j2ee-int-test</artifactId>
@@ -196,7 +196,7 @@
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-impl</artifactId>
-            <version>0.16-sjd</version>
+            <version>0.17-sjd</version>
         </dependency>
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
@@ -250,19 +250,19 @@
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-api</artifactId>
-            <version>0.16-sjd</version>
+            <version>0.17-sjd</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-genid-test</artifactId>
-            <version>0.16-sjd</version>
+            <version>0.17-sjd</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
-            <version>0.16-sjd</version>
+            <version>0.17-sjd</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

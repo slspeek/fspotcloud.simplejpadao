@@ -35,6 +35,9 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         T entity = null;
         try {
             entity = em.find(entityType, key);
+            if (entity != null) {
+                detach(entity);
+            }
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -44,23 +47,43 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
 
     @Override
     public List<T> findAll(int max) {
+        return findAllWhere(max, null);
+    }
+
+    public List<T> findAllWhere(int max, String contraint, Object... parameters) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
         try {
-            Query query = em.createQuery("select c from "
-                    + entityType.getName() + " AS c");
+            String queryString = "select c from "
+                    + entityType.getName() + " AS c";
+            if (contraint != null) {
+                queryString += " WHERE " + contraint;
+            }
+            Query query = em.createQuery(queryString);
+            int i = 1; // position-parameters are 1-based
+            for (Object param: parameters) {
+                query.setParameter(i, param);
+                i++;
+            }
             query.setMaxResults(max);
             @SuppressWarnings("unchecked")
             List<T> rs = (List<T>) query.getResultList();
             List<T> result = new ArrayList<T>();
             result.addAll(rs);
+            for (T entity: result) {
+                detach(entity);
+            }
             em.getTransaction().commit();
             return result;
         } finally {
             em.close();
         }
     }
-
+    
+    protected void detach(T entity) {
+        
+    }
+    
     @Override
     public List<K> findAllKeys(int max) {
         EntityManager em = entityManagerProvider.get();

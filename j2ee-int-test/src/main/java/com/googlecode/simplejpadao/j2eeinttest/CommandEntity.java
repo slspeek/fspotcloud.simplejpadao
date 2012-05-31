@@ -15,6 +15,8 @@ public class CommandEntity implements Command {
     
     @Basic 
     private String name;
+    @Basic
+    private boolean valid;
     @Override
     public Long getId() {
         return id;
@@ -39,5 +41,15 @@ public class CommandEntity implements Command {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    
 
 }
