@@ -50,7 +50,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         return findAllWhere(max, null);
     }
 
-    public List<T> findAllWhere(int max, String contraint, Object... parameters) {
+    public List<T> findAllWhere(int max, String contraint) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
         try {
@@ -60,11 +60,6 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
                 queryString += " WHERE " + contraint;
             }
             Query query = em.createQuery(queryString);
-            int i = 1; // position-parameters are 1-based
-            for (Object param: parameters) {
-                query.setParameter(i, param);
-                i++;
-            }
             query.setMaxResults(max);
             @SuppressWarnings("unchecked")
             List<T> rs = (List<T>) query.getResultList();

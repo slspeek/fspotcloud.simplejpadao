@@ -14,7 +14,7 @@ public interface AbstractDAO<T,K> {
 
     List<T> findAll(int max);
     
-    List<T> findAllWhere(int max, String contraint, Object... parameters);
+    List<T> findAllWhere(int max, String contraint);
 
     List<K> findAllKeys(int max);
 

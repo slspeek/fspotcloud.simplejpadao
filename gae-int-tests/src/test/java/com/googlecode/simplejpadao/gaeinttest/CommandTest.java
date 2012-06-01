@@ -2,16 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.googlecode.simplejpadao.j2eeinttest;
+package com.googlecode.simplejpadao.gaeinttest;
 
-import com.googlecode.simplejpadao.j2eeinttest.CommandDAO;
-import com.googlecode.simplejpadao.j2eeinttest.Command;
-import com.googlecode.simplejpadao.HasKey;
+
+import com.googlecode.simplejpadao.gaeinttest.CommandDAO;
+import com.googlecode.simplejpadao.gaeinttest.Command;
 import com.googlecode.simplejpadao.test.genid.GenIdDAOTest;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -29,7 +28,7 @@ public class CommandTest extends GenIdDAOTest<Command, Long> {
         assertEquals("Richard", getDao().find(rKey).getName());
                 
     }
-    @Ignore
+    
     @Test
     public void withConstraint() {
         Command cmd;
@@ -51,7 +50,8 @@ public class CommandTest extends GenIdDAOTest<Command, Long> {
         
         cmd = null;
         
-        List<Command> result = getDao().findAllWhere(1000, "valid = true");
+        //List<Command> result = getDao().findAllWhere(1000, "name = ? AND valid = ?", "foo", Boolean.TRUE);
+        List<Command> result = getDao().findAllWhere(1000, "name = 'foo' AND valid = true");
         assertEquals(1, result.size());
         
         

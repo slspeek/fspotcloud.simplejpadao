@@ -1,4 +1,4 @@
-package com.googlecode.simplejpadao.gaeinttests;
+package com.googlecode.simplejpadao.gaeinttest;
 
 /**
  * Hello world!
