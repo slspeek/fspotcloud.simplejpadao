@@ -4,23 +4,15 @@
  */
 package com.googlecode.simplejpadao;
 
-import com.googlecode.simplejpadao.SimpleDAONamedId;
-import com.googlecode.simplejpadao.HasSetKey;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author steven
  */
-public class SimpleDAONamedIdImpl<T extends HasSetKey<K>, U extends T, K>
+public abstract class SimpleDAONamedIdImpl<T extends HasSetKey<K>, U extends T, K>
         extends DAOBase<T, U, K> implements SimpleDAONamedId<T,K> {
-
-    public SimpleDAONamedIdImpl(Class<U> entityType, Provider<EntityManager> emProvider) {
-        super(entityType, emProvider);
-    }
 
     @Override
     public T findOrNew(K key) {
@@ -35,7 +27,7 @@ public class SimpleDAONamedIdImpl<T extends HasSetKey<K>, U extends T, K>
     public T newEntity(K key) {
         T entity;
         try {
-            entity = entityType.newInstance();
+            entity = getEntityType().newInstance();
             entity.setId(key);
             return entity;
         } catch (InstantiationException ex) {

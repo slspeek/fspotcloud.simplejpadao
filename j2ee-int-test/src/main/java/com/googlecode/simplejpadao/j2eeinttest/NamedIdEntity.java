@@ -1,8 +1,8 @@
 package com.googlecode.simplejpadao.j2eeinttest;
 
-import java.util.Date;
-import javax.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class NamedIdEntity implements NamedId {
@@ -17,16 +17,17 @@ public class NamedIdEntity implements NamedId {
     public void setId(String id) {
         this.id = id;
     }
-    
-    @Basic 
+
+    @Basic
     private String name;
+
     @Override
     public String toString() {
         String result = " : ";
         return result;
     }
 
-  
+
     public NamedIdEntity() {
     }
 

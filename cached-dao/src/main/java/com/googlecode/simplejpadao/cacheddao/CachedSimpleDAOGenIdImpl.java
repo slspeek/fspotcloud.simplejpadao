@@ -9,28 +9,18 @@ import com.googlecode.simplejpadao.SimpleDAOGenId;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sf.jsr107cache.Cache;
 
 /**
  *
  * @author steven
  */
-public class CachedSimpleDAOGenIdImpl<T extends HasKey<K> & Serializable, U extends T, K>
+public abstract class CachedSimpleDAOGenIdImpl<T extends HasKey<K> & Serializable, U extends T, K>
         extends CachedBaseDao<T, U, K> implements SimpleDAOGenId<T, K> {
-
-    private final SimpleDAOGenId<T, K> delegate;
-    private final Class<U> entityType;
-
-    public CachedSimpleDAOGenIdImpl(Cache cache, Class<U> entityType, SimpleDAOGenId<T, K> delegate) {
-        super(delegate, cache, entityType);
-        this.delegate = delegate;
-        this.entityType = entityType;
-    }
 
     @Override
     public T newEntity() {
         try {
-            return entityType.newInstance();
+            return getEntityType().newInstance();
         } catch (InstantiationException ex) {
             Logger.getLogger(CachedSimpleDAOGenIdImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

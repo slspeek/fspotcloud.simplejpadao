@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.googlecode.simple-jpa-dao</groupId>
         <artifactId>simple-jpa-dao</artifactId>
-        <version>0.18-sjd</version>
+        <version>0.19.4-sjd</version>
         </parent>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>dao-impl</artifactId>
@@ -32,6 +32,11 @@
             <artifactId>guice</artifactId>
             <version>3.0</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>12.0</version>
         </dependency>
     </dependencies>
     <repositories>

@@ -9,22 +9,13 @@ import com.googlecode.simplejpadao.SimpleDAONamedId;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sf.jsr107cache.Cache;
 
 /**
  *
  * @author steven
  */
-public class CachedSimpleDAONamedIdImpl<T extends HasSetKey<K> & Serializable, U extends T, K>
+public abstract class CachedSimpleDAONamedIdImpl<T extends HasSetKey<K> & Serializable, U extends T, K>
         extends CachedBaseDao<T, U, K> implements SimpleDAONamedId<T, K> {
-
-    private final Class<U> entityType;
-
-    public CachedSimpleDAONamedIdImpl(Class<U> entityType,
-            Cache cache, SimpleDAONamedId<T, K> delegate) {
-        super(delegate, cache, entityType);
-        this.entityType = entityType;
-    }
 
     @Override
     public T findOrNew(K key) {
@@ -39,7 +30,7 @@ public class CachedSimpleDAONamedIdImpl<T extends HasSetKey<K> & Serializable, U
     public T newEntity(K key) {
         T entity;
         try {
-            entity = entityType.newInstance();
+            entity = getEntityType().newInstance();
             entity.setId(key);
             return entity;
         } catch (InstantiationException ex) {

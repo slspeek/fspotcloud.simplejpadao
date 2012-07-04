@@ -1,14 +1,12 @@
 package com.googlecode.simplejpadao.j2eeinttest;
 
-import com.googlecode.simplejpadao.j2eeinttest.CommandDAO;
-import com.googlecode.simplejpadao.j2eeinttest.CommandManager;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-
 import com.googlecode.simplejpadao.EMProvider;
 import com.googlecode.simplejpadao.SimpleDAOGenId;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,6 +20,7 @@ public class J2eeCommandGuiceBerryEnv extends GuiceBerryModule {
         install(new CommandModelModule());
     }
 }
+
 class CommandModelModule extends AbstractModule {
 
     @Override

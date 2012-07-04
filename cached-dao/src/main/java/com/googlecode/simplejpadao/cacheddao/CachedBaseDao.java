@@ -8,25 +8,23 @@ import com.googlecode.simplejpadao.AbstractDAO;
 import com.googlecode.simplejpadao.HasKey;
 import java.io.Serializable;
 import java.util.List;
-import net.sf.jsr107cache.Cache;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author steven
  */
-public class CachedBaseDao<T extends HasKey<K> & Serializable, U extends T, K>
-        extends TypedCacheImpl<T, K>
+public abstract class CachedBaseDao<T extends HasKey<K> & Serializable, U extends T, K>
+        extends TypedCacheImpl<T, K, U>
         implements AbstractDAO<T, K> {
-
-    private final AbstractDAO<T, K> delegate;
-
-    CachedBaseDao(AbstractDAO<T,K> delegate, Cache cache, Class<U> type) {
-        super(cache, type);
-        this.delegate = delegate;
-    }
+    @Inject
+    protected Provider<EntityManager> entityManagerProvider;
 
     public void saveAll(List<T> entityList) {
-        delegate.saveAll(entityList);
+        getDelegate().saveAll(entityList);
         putAll(entityList);
     }
 
@@ -37,26 +35,26 @@ public class CachedBaseDao<T extends HasKey<K> & Serializable, U extends T, K>
     }
 
     public void save(T entity) {
-        delegate.save(entity);
+        getDelegate().save(entity);
         put(entity);
     }
 
     public boolean isEmpty() {
-        return delegate.isEmpty();
+        return getDelegate().isEmpty();
     }
 
     public List<K> findAllKeys(int max) {
-        return delegate.findAllKeys(max);
+        return getDelegate().findAllKeys(max);
     }
 
     public List<T> findAll(int max) {
-        final List<T> result = delegate.findAll(max);
+        final List<T> result = getDelegate().findAll(max);
         putAll(result);
         return result;
     }
 
     public T find(K key) {
-        final T result = delegate.find(key);
+        final T result = getDelegate().find(key);
         if (result != null) {
             put(result);
         }
@@ -64,34 +62,39 @@ public class CachedBaseDao<T extends HasKey<K> & Serializable, U extends T, K>
     }
 
     public void deleteByKey(K key) {
-        delegate.deleteByKey(key);
+        getDelegate().deleteByKey(key);
         removeByKey(key);
     }
 
     public boolean deleteBulk(int max) {
-        //NO CACHE SUPPORT HERE YET
-        return delegate.deleteBulk(max);
+        //TODO:NO CACHE SUPPORT HERE YET
+        return getDelegate().deleteBulk(max);
     }
 
     public void deleteAll(List<T> entityList) {
-        delegate.deleteAll(entityList);
+        getDelegate().deleteAll(entityList);
         for(T ent:entityList) {
             remove(ent);
         }
     }
 
     public void delete(T entity) {
-        delegate.delete(entity);
+        getDelegate().delete(entity);
         remove(entity);
     }
 
     public int count(int max) {
-        return delegate.count(max);
+        return getDelegate().count(max);
     }
 
     public List<T> findAllWhere(int max, String contraint) {
-        List<T> result = delegate.findAllWhere(max, contraint);
+        List<T> result = getDelegate().findAllWhere(max, contraint);
         putAll(result);
         return result;
     }
+
+    public abstract AbstractDAO<T, K> getDelegate();
+
+
+
 }

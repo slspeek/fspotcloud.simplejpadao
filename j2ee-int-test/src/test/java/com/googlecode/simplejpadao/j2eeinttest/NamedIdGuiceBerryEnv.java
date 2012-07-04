@@ -1,12 +1,9 @@
 package com.googlecode.simplejpadao.j2eeinttest;
 
-import com.googlecode.simplejpadao.j2eeinttest.NamedIdRepository;
-import com.googlecode.simplejpadao.j2eeinttest.NamedIdDAO;
 import com.google.guiceberry.GuiceBerryModule;
-import com.google.inject.name.Names;
-
 import com.googlecode.simplejpadao.EMProvider;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

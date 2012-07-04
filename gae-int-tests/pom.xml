@@ -5,7 +5,7 @@
     <parent>
         <artifactId>simple-jpa-dao</artifactId>
         <groupId>com.googlecode.simple-jpa-dao</groupId>
-        <version>0.18-sjd</version>
+        <version>0.19.4-sjd</version>
     </parent>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>gae-int-tests</artifactId>
@@ -119,6 +119,11 @@
             <artifactId>dao-namedid-test</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>12.0</version>
         </dependency>
     </dependencies>
     <build>

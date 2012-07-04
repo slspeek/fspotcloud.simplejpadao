@@ -4,25 +4,27 @@
  */
 package com.googlecode.simplejpadao.cacheddao;
 
+import com.google.common.reflect.TypeToken;
 import com.googlecode.simplejpadao.HasKey;
-import java.io.Serializable;
 import net.sf.jsr107cache.Cache;
 import org.apache.commons.lang.SerializationUtils;
 
+import javax.inject.Inject;
+import java.io.Serializable;
+
 /**
- *
  * @author steven
  */
-public class TypedCacheImpl<T extends HasKey<K> & Serializable, K>
-        implements TypedCache<T, K> {
+public abstract class TypedCacheImpl<T extends HasKey<K> & Serializable, K, U> {
 
-    private final Cache cache;
-    private final Class type;
+    @Inject
+    private Cache cache;
 
-    public TypedCacheImpl(Cache cache, Class type) {
-        this.cache = cache;
-        this.type = type;
+
+    TypedCacheImpl() {
+
     }
+
 
     public T get(K key) {
         String cacheId = keyString(key);
@@ -36,7 +38,7 @@ public class TypedCacheImpl<T extends HasKey<K> & Serializable, K>
     }
 
     private String keyString(K key) {
-        return type.getName() + String.valueOf(key);
+        return getEntityType().getName() + String.valueOf(key);
     }
 
     public void put(T object) {
@@ -55,4 +57,6 @@ public class TypedCacheImpl<T extends HasKey<K> & Serializable, K>
         String cacheId = keyString(key);
         cache.remove(cacheId);
     }
+
+    abstract public Class<U> getEntityType();
 }

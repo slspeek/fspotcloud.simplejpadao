@@ -4,11 +4,12 @@
  */
 package com.googlecode.simplejpadao;
 
-import com.googlecode.simplejpadao.HasKey;
-import com.googlecode.simplejpadao.AbstractDAO;
+import com.google.common.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -17,15 +18,15 @@ import javax.persistence.Query;
  *
  * @author steven
  */
-public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO<T, K> {
+public abstract class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO<T, K> {
 
-    protected final Class<U> entityType;
-    protected final Provider<EntityManager> entityManagerProvider;
-    private static final Logger log = Logger.getLogger(DAOBase.class.getName());
+    @Inject
+    protected Provider<EntityManager> entityManagerProvider;
+    @Inject
+    private Logger log;
 
-    public DAOBase(Class<U> entityType, Provider<EntityManager> emProvider) {
-        this.entityType = entityType;
-        this.entityManagerProvider = emProvider;
+    DAOBase() {
+        Logger.getAnonymousLogger().info("EntityType:--: " + getEntityType().getName());
     }
 
     @Override
@@ -34,7 +35,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         em.getTransaction().begin();
         T entity = null;
         try {
-            entity = em.find(entityType, key);
+            entity = em.find(getEntityType(), key);
             if (entity != null) {
                 detach(entity);
             }
@@ -55,7 +56,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         em.getTransaction().begin();
         try {
             String queryString = "select c from "
-                    + entityType.getName() + " AS c";
+                    + getEntityType().getName() + " AS c";
             if (contraint != null) {
                 queryString += " WHERE " + contraint;
             }
@@ -85,7 +86,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         //em.getTransaction().begin();
         try {
             Query query = em.createQuery("select c.id from "
-                    + entityType.getName() + " AS c");
+                    + getEntityType().getName() + " AS c");
             query.setMaxResults(max);
             @SuppressWarnings("unchecked")
             List<K> rs = (List<K>) query.getResultList();
@@ -107,7 +108,7 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
             if (key == null) {
                 em.persist(entity);
             } else {
-                T retrieved = em.find(entityType, key);
+                T retrieved = em.find(getEntityType(), key);
                 if (retrieved == null) {
                     em.persist(entity);
                 } else {
@@ -132,14 +133,19 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         deleteByKey(entity.getId());
     }
 
-    public void deleteByKey(K key) {
+    final public void deleteByKey(K key) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
         log.info("about to find for delete: " + key);
-        T entityRetrieved = em.find(entityType, key);
+        T entityRetrieved = em.find(getEntityType(), key);
+        preDelete(entityRetrieved);
         em.remove(entityRetrieved);
         em.getTransaction().commit();
         em.close();
+    }
+
+    protected void preDelete(T entity) {
+
     }
 
     @Override
@@ -169,4 +175,6 @@ public class DAOBase<T extends HasKey<K>, U extends T, K> implements AbstractDAO
         }
         return isEmpty();
     }
+
+    public abstract Class<U> getEntityType();
 }

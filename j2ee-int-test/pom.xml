@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>simple-jpa-dao</artifactId>
         <groupId>com.googlecode.simple-jpa-dao</groupId>
-        <version>0.18-sjd</version>
+        <version>0.19.4-sjd</version>
     </parent>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>j2ee-int-test</artifactId>
@@ -25,8 +26,8 @@
                         <phase>process-test-resources,clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${basedir}/JPA" includeemptydirs="true" />
-                                <delete file="${basedir}/derby.log" />
+                                <delete dir="${basedir}/JPA" includeemptydirs="true"/>
+                                <delete file="${basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -57,7 +58,8 @@
                                     <groupId>com.googlecode.simple-jpa-dao</groupId>
                                     <artifactId>dao-namedid-test</artifactId>
                                     <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/additionaltests/namedid</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/additionaltests/namedid
+                                    </outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -68,8 +70,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <systemPropertyVariables>                                
-                        <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                    <systemPropertyVariables>
+                        <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                            com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv
+                        </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
@@ -80,28 +84,36 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/genid</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/genid
+                            </testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.simplejpadao.j2eeinttest.J2eeCommandGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                         </configuration>
                     </execution>
-                     <execution>
+                    <execution>
                         <id>namedid-dao-tests</id>
                         <phase>test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/namedid</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/namedid
+                            </testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.simplejpadao.j2eeinttest.NamedIdGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.simplejpadao.j2eeinttest.NamedIdGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                         </configuration>
                     </execution>
@@ -114,7 +126,7 @@
                 <configuration>
                     <log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
                     <verbose>true</verbose>
-					<!-- Make sure this path contains your persistent classes! -->
+                    <!-- Make sure this path contains your persistent classes! -->
                     <mappingIncludes>fspotcloud/botdispatch/model/jpa/**/*Entity.class</mappingIncludes>
                     <verbose>true</verbose>
                     <enhancerName>ASM</enhancerName>
@@ -130,6 +142,12 @@
                 </executions>
                 <dependencies>
                     <dependency>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                        <version>12.0</version>
+                    </dependency>
+                    <dependency>
+
                         <groupId>javax.jdo</groupId>
                         <artifactId>jdo2-api</artifactId>
                         <version>2.3-ec</version>
@@ -160,7 +178,7 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies> 
+    <dependencies>
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
@@ -196,11 +214,11 @@
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-impl</artifactId>
-            <version>0.18-sjd</version>
+            <version>0.19.4-sjd</version>
         </dependency>
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
-        
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -250,19 +268,19 @@
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-api</artifactId>
-            <version>0.18-sjd</version>
+            <version>0.19.4-sjd</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-genid-test</artifactId>
-            <version>0.18-sjd</version>
+            <version>0.19.4-sjd</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
-            <version>0.18-sjd</version>
+            <version>0.19.4-sjd</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
