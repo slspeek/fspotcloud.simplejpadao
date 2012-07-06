@@ -5,7 +5,6 @@
 package com.googlecode.simplejpadao.j2eeinttest;
 
 import com.googlecode.simplejpadao.test.genid.GenIdDAOTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -28,31 +27,32 @@ public class CommandTest extends GenIdDAOTest<Command, Long> {
 
     }
 
-    @Ignore
     @Test
     public void withConstraint() {
         Command cmd;
         cmd = ((CommandDAO) getDao()).newEntity();
-        cmd.setValid(false);
+        cmd.setValidated(false);
         cmd.setName("foo");
         getDao().save(cmd);
 
         cmd = ((CommandDAO) getDao()).newEntity();
-        cmd.setValid(true);
+        cmd.setValidated(true);
         cmd.setName("foo");
         getDao().save(cmd);
 
         cmd = ((CommandDAO) getDao()).newEntity();
-        cmd.setValid(true);
+        cmd.setValidated(true);
         cmd.setName("bar");
         getDao().save(cmd);
 
 
         cmd = null;
 
-        List<Command> result = getDao().findAllWhere(1000, "valid = true");
-        assertEquals(1, result.size());
+        List<Command> result = getDao().findAllWhere(1000, "name = 'foo'");
+        assertEquals(2, result.size());
 
+        result = getDao().findAllWhere(1000, "name = 'foo' AND validated = 'true'");
+        assertEquals(1, result.size());
 
     }
 

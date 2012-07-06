@@ -19,7 +19,7 @@ public class CommandEntity implements Command {
     @Basic
     private String name;
     @Basic
-    private boolean valid;
+    private boolean validated;
 
     @Override
     public Long getId() {
@@ -45,12 +45,12 @@ public class CommandEntity implements Command {
         this.name = name;
     }
 
-    public boolean getValid() {
-        return valid;
+    public boolean getValidated() {
+        return validated;
     }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
+    public void setValidated(boolean validated) {
+        this.validated = validated;
     }
 
 

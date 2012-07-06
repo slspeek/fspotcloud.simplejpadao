@@ -11,9 +11,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
-    <orderEntry type="module" module-name="dao-api" />
+    <orderEntry type="library" name="Maven: com.googlecode.simple-jpa-dao:dao-api:0.19.6-sjd" level="project" />
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
-    <orderEntry type="module" module-name="dao-base-test" />
+    <orderEntry type="library" name="Maven: com.googlecode.simple-jpa-dao:dao-base-test:0.19.6-sjd" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guiceberry:guiceberry:3.0.4" level="project" />

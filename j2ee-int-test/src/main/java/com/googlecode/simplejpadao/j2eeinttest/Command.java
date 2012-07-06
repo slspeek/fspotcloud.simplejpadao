@@ -10,7 +10,7 @@ public interface Command extends HasKey<Long> {
 
     String getName();
 
-    boolean getValid();
+    boolean getValidated();
 
-    void setValid(boolean valid);
+    void setValidated(boolean valid);
 }

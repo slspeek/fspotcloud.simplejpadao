@@ -23,7 +23,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="module" module-name="dao-impl" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
-    <orderEntry type="module" module-name="dao-api" />
+    <orderEntry type="library" name="Maven: com.googlecode.simple-jpa-dao:dao-api:0.19.6-sjd" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:4.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: antlr:antlr:2.7.7" level="project" />
@@ -45,9 +45,9 @@
     <orderEntry type="library" name="Maven: javax.transaction:jta:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.jdo:jdo-api:3.0" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction:transaction-api:1.1" level="project" />
-    <orderEntry type="module" module-name="dao-genid-test" scope="TEST" />
-    <orderEntry type="module" module-name="dao-base-test" scope="TEST" />
-    <orderEntry type="module" module-name="dao-namedid-test" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.googlecode.simple-jpa-dao:dao-genid-test:0.19.6-sjd" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.googlecode.simple-jpa-dao:dao-base-test:0.19.6-sjd" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.googlecode.simple-jpa-dao:dao-namedid-test:0.19.6-sjd" level="project" />
   </component>
 </module>
 
