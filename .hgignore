@@ -1,5 +1,5 @@
 syntax: glob
-.idea
+.idea/*
 derby.log
 */derby.log
 .gradle/*

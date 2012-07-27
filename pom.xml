@@ -149,6 +149,18 @@
             <url>dav:https://fspotcloud-maven.googlecode.com/svn/maven/repository</url>
         </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>fspotcloud-maven</id>
+            <name>fspotcloud-maven</name>
+            <url>http://fspotcloud-maven.googlecode.com/svn/maven/repository</url>
+        </repository>
+        <repository>
+            <id>fspotcloud-maven-legacy</id>
+            <name>fspotcloud-maven-legacy</name>
+            <url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+        </repository>
+    </repositories>
     <modules>
         <module>dao-api</module>
         <module>dao-base-test</module>
