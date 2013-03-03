@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.googlecode.simple-jpa-dao</groupId>
     <artifactId>simple-jpa-dao</artifactId>
-    <version>0.19.6-sjd</version>
+    <version>0.19.9-sjd</version>
     <packaging>pom</packaging>
     <name>Simple JPA DAO</name>
     <dependencies>
@@ -18,13 +18,9 @@
         </extensions>
     </build>
      <properties>
-        <hibernate.version>4.0.0.Final</hibernate.version>
-        <derby.version>10.8.2.2</derby.version>
-        <guice.version>3.0</guice.version>
-        <gin.version>1.5.0</gin.version>
-        <gwt.version>2.4.0</gwt.version>
-        <gwt.plugin.version>2.4.0</gwt.plugin.version>
-        <gae.version>1.7.0</gae.version>
+        <hibernate.version>4.1.4.Final</hibernate.version>
+        <derby.version>10.6.2.1</derby.version>
+        <gae.version>1.7.4</gae.version>
         <guice.version>3.0</guice.version>
         <gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
     </properties>
@@ -47,11 +43,6 @@
                 <version>2.6</version>
             </dependency>
             <dependency>
-                <groupId>httpunit</groupId>
-                <artifactId>httpunit</artifactId>
-                <version>1.7</version>
-            </dependency>
-            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.10</version>
@@ -62,16 +53,7 @@
                 <version>1.9.0-rc1</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>6.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jmock</groupId>
-                <artifactId>jmock</artifactId>
-                <version>2.5.1</version>
-            </dependency>
+
             <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
@@ -87,27 +69,19 @@
                 <artifactId>guice-assistedinject</artifactId>
                 <version>${guice.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.google.inject.extensions</groupId>
-                <artifactId>guice-servlet</artifactId>
-                <version>${guice.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.gwt</groupId>
-                <artifactId>gwt-user</artifactId>
-                <version>${gwt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.gwt</groupId>
-                <artifactId>gwt-servlet</artifactId>
-                <version>${gwt.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator-annotation-processor</artifactId>
+                <version>4.1.0.Final</version>
+            </dependency>
+            <!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+
             <dependency>
                 <groupId>javassist</groupId>
                 <artifactId>javassist</artifactId>
@@ -119,7 +93,6 @@
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
-            
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>

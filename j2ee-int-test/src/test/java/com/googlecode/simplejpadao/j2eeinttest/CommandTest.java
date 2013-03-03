@@ -51,7 +51,7 @@ public class CommandTest extends GenIdDAOTest<Command, Long> {
         List<Command> result = getDao().findAllWhere(1000, "name = 'foo'");
         assertEquals(2, result.size());
 
-        result = getDao().findAllWhere(1000, "name = 'foo' AND validated = 'true'");
+        result = getDao().findAllWhere(1000, "name = 'foo' AND validated = true");
         assertEquals(1, result.size());
 
     }

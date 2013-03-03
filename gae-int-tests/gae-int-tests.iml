@@ -29,14 +29,14 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.google.guava:guava-testlib:10.0.1" level="project" />
     <orderEntry type="library" name="Maven: javax.jdo:jdo-api:3.0" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction:transaction-api:1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.7.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-testing:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.7.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-testing:1.7.4" level="project" />
     <orderEntry type="library" name="Maven: javax.jdo:jdo2-api:2.3-eb" level="project" />
     <orderEntry type="library" name="Maven: com.google.appengine.orm:datanucleus-appengine:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.datanucleus:datanucleus-core:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:datanucleus-jpa:1.1.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-api-stubs:1.7.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-local-runtime:1.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-api-stubs:1.7.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.google.appengine:appengine-local-runtime:1.7.4" level="project" />
     <orderEntry type="module" module-name="dao-genid-test" scope="TEST" />
     <orderEntry type="module" module-name="dao-base-test" scope="TEST" />
     <orderEntry type="module" module-name="dao-namedid-test" scope="TEST" />
