@@ -18,9 +18,9 @@
         </extensions>
     </build>
      <properties>
-        <hibernate.version>4.1.4.Final</hibernate.version>
+        <hibernate.version>4.3.8.Final</hibernate.version>
         <derby.version>10.6.2.1</derby.version>
-        <gae.version>1.7.4</gae.version>
+        <gae.version>1.9.18</gae.version>
         <guice.version>3.0</guice.version>
         <gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
     </properties>

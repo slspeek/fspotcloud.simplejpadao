@@ -102,12 +102,12 @@
             <version>${gae.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-local-runtime</artifactId>
-            <version>${gae.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.appengine</groupId>-->
+            <!--<artifactId>appengine-local-runtime</artifactId>-->
+            <!--<version>${gae.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>dao-genid-test</artifactId>
